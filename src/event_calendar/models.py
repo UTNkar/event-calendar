@@ -143,7 +143,7 @@ class Group(models.Model):
         return self.name_en
 
 
-class EventInvite(models.Model):
+class EventCoHost(models.Model):
     event = models.ForeignKey(
         'Event',
         on_delete=models.CASCADE
@@ -184,7 +184,7 @@ class Event(models.Model):
         'Group',
         verbose_name=_("Event co-hosts"),
         related_name="cohosted_events",
-        through="EventInvite"
+        through="EventCoHost"
     )
     categories = models.ManyToManyField(
         'Category',
@@ -212,6 +212,7 @@ class Event(models.Model):
     )
     date_end = models.DateTimeField(
         blank=True,
+        null=True,
         verbose_name=_("Event end date"),
         help_text=_("Leave empty if the event has no specific end time.")
     )
