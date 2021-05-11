@@ -1,10 +1,61 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+
+
+class UserManager(BaseUserManager):
+    def create_user(self, email, password, group):
+        group_instance = Group.objects.get(pk=group)
+        user = self.model(
+            email=email,
+            group=group_instance
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password, group):
+        user = self.create_user(email, password, group)
+
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 
 
 class User(AbstractBaseUser):
     """The user."""
-    pass
+
+    email = models.EmailField(unique=True)
+
+    group = models.ForeignKey(
+        'Group',
+        on_delete=models.CASCADE
+    )
+
+    is_superuser = models.BooleanField(
+        _('superuser status'),
+        default=False,
+        help_text=_(
+            'Designates that this user has all permissions without '
+            'explicitly assigning them.'
+        ),
+    )
+
+    objects = UserManager()
+
+    is_active = True
+    is_staff = True
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = ['group']
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
 
 
 class Category(models.Model):
