@@ -81,13 +81,36 @@ class Group(models.Model):
     )
     description_en = models.TextField(
         verbose_name=_("English description"),
+        blank=True
     )
     description_sv = models.TextField(
         verbose_name=_("Swedish description"),
+        blank=True
     )
 
     def __str__(self):  # noqa
         return self.name_en
+
+
+class EventInvite(models.Model):
+    event = models.ForeignKey(
+        'Event',
+        on_delete=models.CASCADE
+    )
+
+    group = models.ForeignKey(
+        'Group',
+        on_delete=models.CASCADE
+    )
+
+    status = models.CharField(
+        max_length=32,
+        choices=(
+            ("invited", _("Invited")),
+            ("accepted", _("Accepted"))
+        ),
+        default="invited"
+    )
 
 
 class Event(models.Model):
@@ -109,11 +132,13 @@ class Event(models.Model):
     cohosts = models.ManyToManyField(
         'Group',
         verbose_name=_("Event co-hosts"),
-        # through =
+        related_name="cohosted_events",
+        through="EventInvite"
     )
     categories = models.ManyToManyField(
         'Category',
-        verbose_name=_("Event categories")
+        verbose_name=_("Event categories"),
+        related_name="categories"
     )
 
     description_en = models.TextField(
@@ -139,9 +164,8 @@ class Event(models.Model):
         verbose_name=_("Event end date"),
         help_text=_("Leave empty if the event has no specific end time.")
     )
-    status = models.CharField(
-        max_length=128,
-        choices=()
+    published = models.BooleanField(
+        default=False
     )
     membership_required = models.BooleanField(
         verbose_name=_("Membership required"),
