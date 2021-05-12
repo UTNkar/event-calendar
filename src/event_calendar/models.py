@@ -225,6 +225,25 @@ class Event(models.Model):
         verbose_name=_("Membership required"),
         help_text=_("If the event requires a section or UTN membership."),
     )
+    contact = models.CharField(
+        max_length=512
+    )
+    location = models.CharField(
+        max_length=256,
+        blank=True
+    )
+    price = models.CharField(
+        max_length=256,
+        blank=True
+    )
+    link = models.URLField(
+        blank=True,
+        verbose_name=_("URL"),
+        help_text=_(
+            "If your event has an important URL, "
+            "such as a Zoom-link or Facebook page, enter it here."
+        ),
+    )
 
     def __str__(self):  # noqa
         return self.title_en + " by " + self.host.name_en
