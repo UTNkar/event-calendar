@@ -133,3 +133,5 @@ dmypy.json
 
 # Editor files
 .vscode/
+
+src/event_calendar/media/*
