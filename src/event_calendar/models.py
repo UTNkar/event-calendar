@@ -87,6 +87,7 @@ class Post(models.Model):
         'Event',
         on_delete=models.CASCADE,
         verbose_name=_("Related event"),
+        related_name='posts'
     )
     content = models.TextField(
         verbose_name=_("Post contents"),
@@ -191,7 +192,8 @@ class Event(models.Model):
         verbose_name=_("Event categories"),
         related_name="categories"
     )
-
+    # TODO: Remove image from system automatically when event is deleted
+    cover_photo = models.ImageField()
     description_en = models.TextField(
         verbose_name=_("English event description"),
     )
