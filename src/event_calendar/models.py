@@ -1,10 +1,61 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+
+
+class UserManager(BaseUserManager):
+    def create_user(self, email, password, group):
+        group_instance = Group.objects.get(pk=group)
+        user = self.model(
+            email=email,
+            group=group_instance
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password, group):
+        user = self.create_user(email, password, group)
+
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 
 
 class User(AbstractBaseUser):
     """The user."""
-    pass
+
+    email = models.EmailField(unique=True)
+
+    group = models.ForeignKey(
+        'Group',
+        on_delete=models.CASCADE
+    )
+
+    is_superuser = models.BooleanField(
+        _('superuser status'),
+        default=False,
+        help_text=_(
+            'Designates that this user has all permissions without '
+            'explicitly assigning them.'
+        ),
+    )
+
+    objects = UserManager()
+
+    is_active = True
+    is_staff = True
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = ['group']
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
 
 
 class Category(models.Model):
@@ -36,6 +87,7 @@ class Post(models.Model):
         'Event',
         on_delete=models.CASCADE,
         verbose_name=_("Related event"),
+        related_name='posts'
     )
     content = models.TextField(
         verbose_name=_("Post contents"),
@@ -81,13 +133,36 @@ class Group(models.Model):
     )
     description_en = models.TextField(
         verbose_name=_("English description"),
+        blank=True
     )
     description_sv = models.TextField(
         verbose_name=_("Swedish description"),
+        blank=True
     )
 
     def __str__(self):  # noqa
         return self.name_en
+
+
+class EventCoHost(models.Model):
+    event = models.ForeignKey(
+        'Event',
+        on_delete=models.CASCADE
+    )
+
+    group = models.ForeignKey(
+        'Group',
+        on_delete=models.CASCADE
+    )
+
+    status = models.CharField(
+        max_length=32,
+        choices=(
+            ("invited", _("Invited")),
+            ("accepted", _("Accepted"))
+        ),
+        default="invited"
+    )
 
 
 class Event(models.Model):
@@ -109,13 +184,16 @@ class Event(models.Model):
     cohosts = models.ManyToManyField(
         'Group',
         verbose_name=_("Event co-hosts"),
-        # through =
+        related_name="cohosted_events",
+        through="EventCoHost"
     )
     categories = models.ManyToManyField(
         'Category',
-        verbose_name=_("Event categories")
+        verbose_name=_("Event categories"),
+        related_name="categories"
     )
-
+    # TODO: Remove image from system automatically when event is deleted
+    cover_photo = models.ImageField()
     description_en = models.TextField(
         verbose_name=_("English event description"),
     )
@@ -136,16 +214,35 @@ class Event(models.Model):
     )
     date_end = models.DateTimeField(
         blank=True,
+        null=True,
         verbose_name=_("Event end date"),
         help_text=_("Leave empty if the event has no specific end time.")
     )
-    status = models.CharField(
-        max_length=128,
-        choices=()
+    published = models.BooleanField(
+        default=False
     )
     membership_required = models.BooleanField(
         verbose_name=_("Membership required"),
         help_text=_("If the event requires a section or UTN membership."),
+    )
+    contact = models.CharField(
+        max_length=512
+    )
+    location = models.CharField(
+        max_length=256,
+        blank=True
+    )
+    price = models.CharField(
+        max_length=256,
+        blank=True
+    )
+    link = models.URLField(
+        blank=True,
+        verbose_name=_("URL"),
+        help_text=_(
+            "If your event has an important URL, "
+            "such as a Zoom-link or Facebook page, enter it here."
+        ),
     )
 
     def __str__(self):  # noqa
