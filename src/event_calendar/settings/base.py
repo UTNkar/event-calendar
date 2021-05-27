@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import sys
 import os
 from django.utils.translation import gettext_lazy as _
 
@@ -28,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'event_calendar'
+    'event_calendar',
+    'tailwind',
+    'tailwind_theme'
 ]
 
 MIDDLEWARE = [
@@ -114,3 +115,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "event_calendar.User"
+
+TAILWIND_APP_NAME = 'tailwind_theme'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
