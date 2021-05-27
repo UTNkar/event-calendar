@@ -1,3 +1,4 @@
+{% load tailwind_tags static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,12 +7,29 @@
         <meta name="author" content="UTN">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}UTN:s event calendar{% endblock %}</title>
+        {% tailwind_css %}
         {% block extra_head %}
         {% endblock %}
     </head>
-    <body>
-        {% block content %}
-        {% endblock %}
+    <body class="mx-auto px-16 container">
+        <header class="flex content-between py-4">
+            <div class="flex-1">
+                <img src="{% static 'utn_logo.svg' %}" class="h-16">
+            </div>
+            <nav class="flex items-center gap-4">
+                <a href="#">Evenemang</a>
+                <a href="#">Organisationer</a>
+                <a href="https://nationsguiden.se">Nationsguiden</a>
+                <a href="https://utn.se">UTN:s hemsida</a>
+            </nav>
+        </header>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+        <footer>
+
+        </footer>
         {% block extra_js %}
         {% endblock %}
     </body>
