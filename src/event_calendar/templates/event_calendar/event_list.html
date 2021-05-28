@@ -1,7 +1,42 @@
 {% extends 'event_calendar/base.html' %}
+{% load static %}
+
+{% block body_style %}
+{% comment %}
+The background gradient is only used on this view and must be the full width of the screen.
+The stop point 30.5rem has been calculated to be the content below the banner.
+{% endcomment %}
+background: linear-gradient(white, 30.5rem, #f5f5f5);
+{% endblock %}
+
 {% block content %}
 <div class="bg-gradient-to-br from-customgreen to-customblue text-white py-32 text-center flex flex-col gap-6">
     <h1 class="text-5xl">UTN-Kalendern</h1>
     <p class="text-2xl">En samling av alla event av UTN, sektionerna på TekNat och UTN:s associerade föreningar</p>
 </div>
+<section class="mt-8 relative">
+    <div class="w-10/12 mx-auto">
+        <h2 class="text-4xl text-center">Kommande event</h2>
+        <div class="grid grid-cols-3">
+            <div class="shadow-md rounded-lg border border-solid border-gray-200">
+                <img src="{% static 'utn_logo.svg' %}">
+                <div class="flex gap-4">
+                    <p class="uppercase">
+                        apr<br>
+                        <b class="font-bold">18</b>
+                    </p>
+                    <div class="flex flex-col">
+                        <h3>Flaggbytargasuqen</h3>
+                        <p class="text-sm">18dk</p>
+                        <div class="flex-1">
+                            <div class="rounded-full">
+                                <img src="{% static 'utn_logo.svg' %}" class="w-8 h-8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

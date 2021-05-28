@@ -1,6 +1,6 @@
 {% load tailwind_tags static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="description" content="UTN:s event calendar">
@@ -11,7 +11,7 @@
         {% block extra_head %}
         {% endblock %}
     </head>
-    <body class="mx-auto px-16 container">
+    <body class="mx-auto px-16 container h-full" style="{% block body_style %}{% endblock %}">
         <header class="flex content-between py-4">
             <div class="flex-1">
                 <img src="{% static 'utn_logo.svg' %}" class="h-16">
