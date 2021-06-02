@@ -13,7 +13,7 @@
         {% block extra_head %}
         {% endblock %}
     </head>
-    <body class="mx-auto px-16 container h-full" style="{% block body_style %}{% endblock %}">
+    <body class="mx-auto px-16 container h-full {% block body_extra_class %}{% endblock %}">
         <header class="flex content-between py-4">
             <div class="flex-1">
                 <img src="{% static 'utn_logo.svg' %}" class="h-16">

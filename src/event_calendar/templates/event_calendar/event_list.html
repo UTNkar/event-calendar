@@ -1,14 +1,8 @@
 {% extends 'event_calendar/base.html' %}
 {% load static %}
-
-{% block body_style %}
-{% comment %}
-The background gradient is only used on this view and must be the full width of the screen.
-The stop point 30.5rem has been calculated to be the content below the banner.
-{% endcomment %}
-background: linear-gradient(white, 30.5rem, #f5f5f5);
+{% block body_extra_class %}
+white-to-gray-gradient
 {% endblock %}
-
 {% block content %}
 <div class="bg-gradient-to-br from-customgreen to-customblue text-white py-32 text-center flex flex-col gap-6">
     <h1 class="text-5xl">UTN-Kalendern</h1>
