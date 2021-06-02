@@ -12,24 +12,9 @@ white-to-gray-gradient
     <div class="w-10/12 mx-auto">
         <h2 class="text-4xl text-center">Kommande event</h2>
         <div class="grid grid-cols-3">
-            <div class="shadow-md rounded-lg border border-solid border-gray-200">
-                <img src="{% static 'utn_logo.svg' %}">
-                <div class="flex gap-4">
-                    <p class="uppercase">
-                        apr<br>
-                        <b class="font-bold">18</b>
-                    </p>
-                    <div class="flex flex-col">
-                        <h3>Flaggbytargasuqen</h3>
-                        <p class="text-sm">18dk</p>
-                        <div class="flex-1">
-                            <div class="rounded-full">
-                                <img src="{% static 'utn_logo.svg' %}" class="w-8 h-8">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% for event in object_list %}
+                {% include 'event_calendar/card.html' %}
+            {% endfor %}
         </div>
     </div>
 </section>
