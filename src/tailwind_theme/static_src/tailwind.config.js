@@ -4,7 +4,7 @@
  * If you need the full config, get it from here:
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
-
+const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
     /**
      * Stylesheet generation mode.
@@ -55,6 +55,14 @@ module.exports = {
             colors: {
                 'customgreen': '#00EB7A',
                 'customblue': '#007EDA',
+            },
+            fontFamily: {
+                serif: [
+                    'Merriweather', ...defaultTheme.fontFamily.serif
+                ],
+                sans: [
+                    'Open Sans', ...defaultTheme.fontFamily.sans
+                ]
             }
         },
     },
