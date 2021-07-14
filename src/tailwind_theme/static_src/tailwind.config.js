@@ -58,10 +58,10 @@ module.exports = {
             },
             fontFamily: {
                 serif: [
-                    'Merriweather', ...defaultTheme.fontFamily.serif
+                    '"Baloo 2"', ...defaultTheme.fontFamily.serif
                 ],
                 sans: [
-                    'Open Sans', ...defaultTheme.fontFamily.sans
+                    'Comfortaa', ...defaultTheme.fontFamily.sans
                 ]
             }
         },
