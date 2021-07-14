@@ -1,18 +1,18 @@
 {% load static %}
-<div class="shadow-md rounded-lg border border-solid border-gray-200 w-80 h-80 overflow-hidden">
+<div class="flex flex-col font-serif shadow-md rounded-lg border border-solid border-gray-200 w-80 min-h-80 overflow-hidden bg-white">
     <img class="h-48 w-full object-cover" src="{{ event.cover_photo.url }}">
-    <div class="flex pt-2">
-        <p class="px-4 uppercase">
+    <div class="flex flex-1 pt-2">
+        <p class="px-2 pt-2 uppercase text-center text-blue-500 text-lg" style="line-height: 1.1;">
             apr<br>
-            <b class="font-bold">18</b>
+            <b class="font-bold text-black">18</b>
         </p>
         <div class="flex flex-col">
-            <h3 class="text-2xl font-bold antialiased">Flaggbytargasuqen</h3>
-            <p class="text-sm">18dk</p>
-            <div class="flex-1">
-                <div class="rounded-full">
-                    <img src="{% static 'utn_logo.svg' %}" class="w-8 h-8">
-                </div>
+            <h3 class="text-2xl font-semibold antialiased">{{ event.title_sv }}</h3>
+            <p class="text-base -mt-1 flex-1">18dk</p>
+            <p class="text-xs text-gray-400 font-sans">Arrangeras av:</p>
+            <div class="flex gap-2 my-1">
+                <img src="{% static 'gray.png' %}" class="w-8 h-8 rounded-full object-cover object-left">
+                <img src="{% static 'utn_logo.svg' %}" class="w-8 h-8 rounded-full object-cover object-left">
             </div>
         </div>
     </div>

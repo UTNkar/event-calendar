@@ -63,6 +63,9 @@ module.exports = {
                 sans: [
                     'Comfortaa', ...defaultTheme.fontFamily.sans
                 ]
+            },
+            minHeight: {
+                '80': '20rem',
             }
         },
     },
