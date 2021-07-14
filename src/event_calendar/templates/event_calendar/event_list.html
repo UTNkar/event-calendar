@@ -4,18 +4,14 @@
 white-to-gray-gradient
 {% endblock %}
 {% block content %}
-<div class="bg-gradient-to-br from-customgreen to-customblue text-white py-32 text-center flex flex-col gap-6">
-    <h1 class="text-5xl">UTN-Kalendern</h1>
+<div class="bg-gradient-to-br from-customgreen to-customblue text-white py-32 text-center flex flex-col gap-2">
+    <h1 class="text-7xl font-serif font-semibold">UTN-Kalendern</h1>
     <p class="text-2xl">En samling av alla event av UTN, sektionerna på TekNat och UTN:s associerade föreningar</p>
 </div>
 <section class="mt-8 relative">
     <div class="w-10/12 mx-auto">
         <h2 class="text-4xl text-center">Kommande event</h2>
-        <div class="grid grid-cols-3">
-            {% for event in object_list %}
-                {% include 'event_calendar/card.html' %}
-            {% endfor %}
-        </div>
+        {% include 'event_calendar/week_grid.html' %}
     </div>
 </section>
 {% endblock %}
