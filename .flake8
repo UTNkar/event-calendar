@@ -10,4 +10,6 @@ exclude =
     */migrations/*
     venv/*
 
+    src/tailwind_theme/*
+
 ignore = D100, D104, D106, D107, W504

@@ -4,7 +4,10 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 
 
 class UserManager(BaseUserManager):
+    """The user manager for custom user model."""
+
     def create_user(self, email, password, group):
+        """Create a new user."""
         group_instance = Group.objects.get(pk=group)
         user = self.model(
             email=email,
@@ -16,6 +19,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, group):
+        """Create a user and make it a superuser."""
         user = self.create_user(email, password, group)
 
         user.is_superuser = True
@@ -51,10 +55,10 @@ class User(AbstractBaseUser):
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = ['group']
 
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, perm, obj=None):  # noqa
         return True
 
-    def has_module_perms(self, app_label):
+    def has_module_perms(self, app_label):  # noqa
         return True
 
 
@@ -145,6 +149,8 @@ class Group(models.Model):
 
 
 class EventCoHost(models.Model):
+    """A co host to an event."""
+
     event = models.ForeignKey(
         'Event',
         on_delete=models.CASCADE
