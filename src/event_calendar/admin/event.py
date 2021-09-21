@@ -1,3 +1,6 @@
+"""
+A docstring for event
+"""
 from django.contrib import admin
 from event_calendar.models import EventCoHost
 
