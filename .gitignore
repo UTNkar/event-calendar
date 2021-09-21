@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Databases
+*.sqlite3
+
+# Editor files
+.vscode/
+
+src/event_calendar/media/*

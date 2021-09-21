@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .white-to-gray-gradient{
+    /*
+        The background gradient is only used on this view and must be the full width of the screen.
+        The stop point 30.5rem has been calculated to be the content below the banner.
+    */
+        background: linear-gradient(white 30.5rem, #f5f5f5);
+    }
+}

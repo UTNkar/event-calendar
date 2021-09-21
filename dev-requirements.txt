@@ -1,0 +1,10 @@
+# Project requirements
+-r requirements.txt
+
+# Development requirements
+flake8
+autopep8
+
+# Plugins for flake8
+pep8-naming==0.12.1
+flake8-docstrings==1.6.0
