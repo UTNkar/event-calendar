@@ -1,5 +1,5 @@
 <div class="mb-6 mt-8">
-    <h3 class="text-center text-lg">Vecka 23 (Denna vecka)</h3>
+    <h3 class="text-center text-lg"><p id="weeknumber"></p></h3>
     <hr class="transform scale-x-110">
 </div>
 <div class="grid grid-cols-3">
@@ -7,3 +7,7 @@
         {% include 'event_calendar/card.html' %}
     {% endfor %}
 </div>
+<script>
+var element = document.getElementById("weeknumber")
+element.innerHTML = "Vecka " +week + " (Denna vecka)";
+</script>

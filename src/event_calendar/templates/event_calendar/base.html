@@ -2,6 +2,12 @@
 <!DOCTYPE html>
 <html lang="en" class="min-h-full">
     <head>
+      <script>
+      let now = new Date();
+      let onejan = new Date(now.getFullYear(), 0, 1);
+      let week = Math.ceil((((now.getTime() - onejan.getTime()) / 86400000) + onejan.getDay() + 1) / 7);
+      console.log(week);
+      </script>
         <meta charset="utf-8">
         <meta name="description" content="UTN:s event calendar">
         <meta name="author" content="UTN">
