@@ -1,8 +1,10 @@
 # event-calendar
 
-- Description Todo
+A web application that makes it easy for students to keep track of current events at campus Polacksbacken. 
+The application is running a [django](https://www.djangoproject.com/) backend and uses [Tailwind](https://tailwindcss.com/) for frontend purposes.
 
-  ## Getting Started
+  ## Getting Started (Not final)
+1. Install Nodejs and npm
 1. Install Python 3, at least version 3.6 or up.
 2. Install the following python packages:
    - python3-venv
@@ -20,4 +22,8 @@
 
 During development, you can run a test web server using `./manage.py runserver`.
 
-**IMPORTANT!** When running any command in moore, you must be in the virtual environment (a.k.a. `source source_me.sh`)
+
+**IMPORTANT!** When running commands you must be in the virtual environment (a.k.a. `source source_me.sh`)
+
+## Trouble shooting
+You might need to restart your server and/or tailwind during initial setup in order for it to work correctly. 
