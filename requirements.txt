@@ -9,4 +9,4 @@ python-decouple==3.5
 # Required for ImageField
 Pillow==8.3.2
 
-django-tailwind==2.2.1
+django-tailwind==2.2.2
