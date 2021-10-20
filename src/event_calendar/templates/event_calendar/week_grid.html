@@ -1,5 +1,5 @@
 <div class="mb-6 mt-8">
-    <h3 class="text-center text-lg">Vecka 23 (Denna vecka)</h3>
+    <h3 class="text-center text-lg"><p id="weeknumber"></p></h3>
     <hr class="transform scale-x-110">
 </div>
 <div class="grid grid-cols-3">
@@ -7,3 +7,11 @@
         {% include 'event_calendar/card.html' %}
     {% endfor %}
 </div>
+
+<script>
+    let now = new Date();
+    let onejan = new Date(now.getFullYear(), 0, 1);
+    let week = Math.ceil((((now.getTime() - onejan.getTime()) / 86400000) + onejan.getDay() + 1) / 7);
+    var element = document.getElementById("weeknumber")
+    element.innerHTML = "Vecka " + week + " (Denna vecka)";
+  </script>
