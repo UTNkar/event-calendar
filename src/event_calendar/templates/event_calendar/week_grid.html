@@ -1,9 +1,8 @@
 <div class="mb-6 mt-8">
     <h3 class="text-center text-lg">Vecka 23 (Denna vecka)</h3>
-    <hr class="transform scale-x-110">
+    <hr class="transform scale-x-110" />
 </div>
 <div class="grid grid-cols-3">
-    {% for event in object_list %}
-        {% include 'event_calendar/card.html' %}
-    {% endfor %}
+    {% for event in object_list %} {% include 'event_calendar/card.html' %} {%
+    endfor %}
 </div>

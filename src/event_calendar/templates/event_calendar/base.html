@@ -2,37 +2,71 @@
 <!DOCTYPE html>
 <html lang="en" class="min-h-full">
     <head>
-        <meta charset="utf-8">
-        <meta name="description" content="UTN:s event calendar">
-        <meta name="author" content="UTN">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Comfortaa&display=swap" rel="stylesheet">
+        <meta charset="utf-8" />
+        <meta name="description" content="UTN:s event calendar" />
+        <meta name="author" content="UTN" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&family=Comfortaa&display=swap"
+            rel="stylesheet"
+        />
         <title>{% block title %}UTN:s event calendar{% endblock %}</title>
-        {% tailwind_css %}
-        {% block extra_head %}
-        {% endblock %}
+        {% tailwind_css %} {% block extra_head %} {% endblock %}
     </head>
-    <body class="mx-auto px-16 container h-full {% block body_extra_class %}{% endblock %}">
+    <body
+        class="
+            mx-auto
+            px-16
+            container
+            h-full
+            {%
+            block
+            body_extra_class
+            %}{%
+            endblock
+            %}
+        "
+    >
         <header class="flex content-between py-4">
             <div class="flex-1">
-                <img src="{% static 'utn_logo.svg' %}" class="h-16" onclick="location.href='https://utn.se'" style="cursor:pointer">
+                <img
+                    src="{% static 'utn_logo.svg' %}"
+                    class="h-16"
+                    onclick="location.href='https://utn.se'"
+                    style="cursor: pointer"
+                />
             </div>
             <nav class="flex items-center gap-4">
                 <a href="#" class="no-underline hover:underline">Evenemang</a>
-                <a href="#" class="no-underline hover:underline">Organisationer</a>
-                <a href="https://nationsguiden.se" class="no-underline hover:underline">Nationsguiden</a>
+                <a href="#" class="no-underline hover:underline"
+                    >Organisationer</a
+                >
+                <a
+                    href="https://nationsguiden.se"
+                    class="no-underline hover:underline"
+                    >Nationsguiden</a
+                >
             </nav>
         </header>
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
-        <footer class="flex justify-center mt-24 py-6 border-t border-solid border-gray-400">
-            <img src="{% static 'utn_logo.svg' %}" class="h-14" onclick="location.href='https://utn.se'" style="cursor:pointer">
+        <main>{% block content %} {% endblock %}</main>
+        <footer
+            class="
+                flex
+                justify-center
+                mt-24
+                py-6
+                border-t border-solid border-gray-400
+            "
+        >
+            <img
+                src="{% static 'utn_logo.svg' %}"
+                class="h-14"
+                onclick="location.href='https://utn.se'"
+                style="cursor: pointer"
+            />
         </footer>
-        {% block extra_js %}
-        {% endblock %}
+        {% block extra_js %} {% endblock %}
     </body>
 </html>
